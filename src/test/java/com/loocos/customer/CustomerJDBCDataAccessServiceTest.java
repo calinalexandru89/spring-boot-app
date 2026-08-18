@@ -275,7 +275,8 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer update = new Customer();
         update.setId(id);
         update.setName("foo");
-        update.setEmail(UUID.randomUUID().toString());
+        String newEmail = UUID.randomUUID().toString();
+        update.setEmail(newEmail);
         update.setAge(22);
 
         underTest.updateCustomer(update);
@@ -283,7 +284,12 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         //Then
         Optional<Customer> actual = underTest.selectCustomerById(id);
 
-        assertThat(actual).isPresent().hasValue(update);
+        assertThat(actual).isPresent().hasValueSatisfying(c -> {
+            assertThat(c.getId()).isEqualTo(id);
+            assertThat(c.getName()).isEqualTo("foo");
+            assertThat(c.getEmail()).isEqualTo(newEmail);
+            assertThat(c.getAge()).isEqualTo(22);
+        });
     }
 
     @Test

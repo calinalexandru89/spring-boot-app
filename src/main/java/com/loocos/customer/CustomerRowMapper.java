@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 @Component
 public class CustomerRowMapper implements RowMapper<Customer> {
+
     @Override
     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Customer(

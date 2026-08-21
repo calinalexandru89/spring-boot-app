@@ -23,7 +23,7 @@ import static org.springframework.boot.test.context.SpringBootTest.*;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
-public class CustomerIntegrationTest {
+public class CustomerIT {
 
     @Autowired
     private WebTestClient webTestClient;

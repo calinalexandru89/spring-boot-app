@@ -13,6 +13,18 @@ services:
     networks:
       - db
     restart: unless-stopped
+  spring-boot-app:
+    container_name: spring-boot-app
+    image: calinalexandrucosmin89/spring-boot-app
+    environment:
+       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
+    ports:
+      - "8088:8080"
+    networks:
+      - db
+    depends_on:
+      - db
+    restart: unless-stopped
 
 networks:
   db:

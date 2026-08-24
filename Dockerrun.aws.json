@@ -15,7 +15,15 @@
       "environment": [
         {
           "name": "SPRING_DATASOURCE_URL",
-          "value": "jdbc:postgresql://db:5432/customer"
+          "value": "jdbc:postgresql://spring-boot-app-db.cp24sa2em53x.eu-west-3.rds.amazonaws.com:5432/customer"
+        },
+        {
+          "name": "SPRING_DATASOURCE_USERNAME",
+          "value": "loocos"
+        },
+        {
+          "name": "SPRING_DATASOURCE_PASSWORD",
+          "value": "springbootapppassword"
         }
       ]
     }

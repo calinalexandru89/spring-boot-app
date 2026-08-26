@@ -19,11 +19,6 @@ jobs:
           POSTGRES_DB: customer
         ports:
           - 5332:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --heatlh-retries 5
 
     defaults:
       run:

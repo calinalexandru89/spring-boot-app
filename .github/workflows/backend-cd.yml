@@ -39,6 +39,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Slack commit message and sha
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: >
           curl -X POST -H 'Content-type: application/json'
           --data '{"text":":github: https://github.com/calinalexandru89/spring-boot-app/commit/${{ github.sha }} - ${{ github.event.head_commit.message }}"}' 

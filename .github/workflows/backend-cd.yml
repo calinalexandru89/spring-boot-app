@@ -107,7 +107,7 @@ jobs:
       - name: Send Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json'
-          --data '{"text":"Deployment and commit completed :github_check_mark: :party_blob: - https://github.com/calinalexandru89/spring-boot-app"}' 
+          --data '{"text":"Deployment and commit completed :github_check_mark: :party_blob: - http://spring-boot-app-api-env-1.eba-y9mqp5tm.eu-west-3.elasticbeanstalk.com/"}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Send Slack Message
         if: always()

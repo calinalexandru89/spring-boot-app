@@ -34,6 +34,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Test Slack Secret
+        env:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+            if [ -z "$SLACK_WEBHOOK_URL" ]; then
+              echo "SECRETUL ESTE GOL"
+              exit 1
+            else
+              echo "SECRETUL EXISTA"
+            fi
       - name: Slack commit message and sha
         run: >
           curl -X POST -H 'Content-type: application/json'

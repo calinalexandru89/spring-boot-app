@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+
 
 spring:
   datasource:

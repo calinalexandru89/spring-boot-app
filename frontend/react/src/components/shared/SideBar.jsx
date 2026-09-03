@@ -13,8 +13,6 @@ import {
     Menu,
     MenuButton,
     MenuDivider,
-    MenuItem,
-    MenuList,
     Text,
     useColorModeValue,
     useDisclosure,
@@ -59,7 +57,7 @@ export default function SidebarWithHeader({children}) {
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            <MobileNav onOpen={onOpen}/>
+            {/*<MobileNav onOpen={onOpen}/>*/}
             <Box ml={{base: 0, md: 60}} p="4">
                 {children}
             </Box>
@@ -85,8 +83,8 @@ const SidebarContent = ({onClose, ...rest}) => {
                 <Image
                     borderRadius='full'
                     boxSize='75px'
-                    src='https://user-images.githubusercontent.com/40702606/210880158-e7d698c2-b19a-4057-b415-09f48a746753.png'
-                    alt='Amigoscode'
+                    src='https://www.svgrepo.com/show/13695/star.svg'
+                    alt='Loocos'
                 />
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
             </Flex>
@@ -130,6 +128,7 @@ const NavItem = ({icon, route, children, ...rest}) => {
     );
 };
 
+/*
 const MobileNav = ({onOpen, ...rest}) => {
     const { logOut, customer } = useAuth()
     return (
@@ -212,4 +211,4 @@ const MobileNav = ({onOpen, ...rest}) => {
             </HStack>
         </Flex>
     );
-};
+};*/

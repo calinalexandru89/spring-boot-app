@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "spring-boot-app-api",
-      "image": "calinalexandrucosmin89/spring-boot-app:31.08.2026.18.53.20",
+      "image": "calinalexandrucosmin89/spring-boot-app:03.09.2026.12.25.50",
       "essential": true,
       "memory": 512,
       "portMappings": [

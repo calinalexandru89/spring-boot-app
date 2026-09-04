@@ -8,7 +8,6 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.context.ApplicationContext;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +33,7 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         //Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
 
-        Customer customer = new Customer(FAKER.name().fullName(), email,20);
+        Customer customer = new Customer(FAKER.name().fullName(), email,20, Gender.MALE);
         underTest.save(customer);
 
 
@@ -64,7 +63,7 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         //Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
 
-        Customer customer = new Customer(FAKER.name().fullName(), email,20);
+        Customer customer = new Customer(FAKER.name().fullName(), email,20, Gender.MALE);
         underTest.save(customer);
 
         int id = underTest.findAll()

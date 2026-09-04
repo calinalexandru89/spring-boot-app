@@ -30,7 +30,7 @@ public class CustomerService {
         if(customerDao.existPersonWithEmail(email)){
             throw new DuplicateResourceException("email already taken");
         }
-        customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email(),customerRegistrationRequest.age()));
+        customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email(),customerRegistrationRequest.age(), customerRegistrationRequest.gender()));
     }
 
     public void deleteCustomerById(Integer customerId){

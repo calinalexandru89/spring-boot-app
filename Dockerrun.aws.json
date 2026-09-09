@@ -2,7 +2,7 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "spring-boot-app-react",
+      "name": "spring-boot-app",
       "image": "calinalexandrucosmin89/spring-boot-app:latest",
       "essential": true,
       "memory": 256,

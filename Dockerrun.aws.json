@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "spring-boot-app-react",
-      "image": "calinalexandrucosmin89/spring-boot-app-react:09.09.2026.18.11.44",
+      "image": "calinalexandrucosmin89/spring-boot-app-react:09.09.2026.19.43.29",
       "essential": true,
       "memory": 256,
       "portMappings": [

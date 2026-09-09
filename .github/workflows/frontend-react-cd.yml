@@ -40,7 +40,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Docker Build and push
         run: |
-          chmod +x ../../.ci/build-publish.sh
           USERNAME=calinalexandrucosmin89 \
           REPO=spring-boot-app-react \
           TAG=${{ steps.build-number.outputs.BUILD_NUMBER }} \

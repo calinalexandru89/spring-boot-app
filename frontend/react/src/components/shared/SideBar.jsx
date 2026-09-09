@@ -96,9 +96,6 @@ const SidebarContent = ({onClose, ...rest}) => {
         </Box>
     );
 };
-
-
-
 const NavItem = ({icon, route, children, ...rest}) => {
     return (
         <Link href={route} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
@@ -110,7 +107,7 @@ const NavItem = ({icon, route, children, ...rest}) => {
                 role="group"
                 cursor="pointer"
                 _hover={{
-                    bg: 'blue.400',
+                    bg: 'green.400',
                     color: 'white',
                 }}
                 {...rest}>

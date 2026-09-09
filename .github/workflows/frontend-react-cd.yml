@@ -38,8 +38,8 @@ jobs:
       - name: Docker Build and push
         run: |
           chmod +x ../../.ci/build-publish.sh
-          USERNAME=loocos \
-          REPO=spring-boot-app-react \
+          USERNAME=calinalexandrucosmin89 \
+          REPO=spring-boot-app \
           TAG=${{ steps.build-number.outputs.BUILD_NUMBER }} \
           ../../.ci/build-publish.sh . \
             --build-arg api_base_url=http://spring-boot-app-api-env-1.eba-y9mqp5tm.eu-west-3.elasticbeanstalk.com

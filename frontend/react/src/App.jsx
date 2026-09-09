@@ -71,12 +71,14 @@ const App = () => {
                 fetchCustomers={fetchCustomers}
             />
             <Wrap justify={"center"} spacing={"30px"}>
-            {customers.map((customer, index) => (
-                <WrapItem key={index}>
-                <CardWithImage {...customer}
-                imageNumber={index} fetchCustomers={fetchCustomers}
-                />
-                </WrapItem>
+                {customers.map((customer, index) => (
+                    <WrapItem key={index}>
+                        <CardWithImage
+                            {...customer}
+                            imageNumber={index}
+                            fetchCustomers={fetchCustomers}
+                        />
+                    </WrapItem>
             ))}
             </Wrap>
         </SidebarWithHeader>

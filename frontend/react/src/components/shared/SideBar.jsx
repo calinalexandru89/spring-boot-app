@@ -65,6 +65,7 @@ export default function SidebarWithHeader({children}) {
     );
 }
 
+
 const SidebarContent = ({onClose, ...rest}) => {
     return (
         <Box

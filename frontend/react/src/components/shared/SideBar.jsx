@@ -96,6 +96,7 @@ const SidebarContent = ({onClose, ...rest}) => {
         </Box>
     );
 };
+
 const NavItem = ({icon, route, children, ...rest}) => {
     return (
         <Link href={route} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>

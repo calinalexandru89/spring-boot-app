@@ -4,25 +4,37 @@ import com.loocos.exception.DuplicateResourceException;
 import com.loocos.exception.RequestValidationException;
 import com.loocos.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
 
     private final CustomerDao customerDao;
+    private final CustomerDTOMapper customerDTOMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao) {
+
+    public CustomerService(@Qualifier("jpa") CustomerDao customerDao, CustomerDTOMapper customerDTOMapper, PasswordEncoder passwordEncoder) {
         this.customerDao = customerDao;
+        this.customerDTOMapper = customerDTOMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public List<Customer> getAllCustomers() {
-        return customerDao.selectAllCustomers();
+    public List<CustomerDTO> getAllCustomers() {
+        return customerDao.selectAllCustomers()
+                .stream()
+                .map(customerDTOMapper).collect(Collectors.toList());
     }
 
-    public Customer getCustomer(Integer id) {
-        return customerDao.selectCustomerById(id).orElseThrow(() -> new ResourceNotFoundException("customer with id [%s} not found".formatted(id)));
+    public CustomerDTO getCustomer(Integer id) {
+        return customerDao.selectCustomerById(id)
+                .map(customerDTOMapper)
+                .orElseThrow(() -> new ResourceNotFoundException("customer with id [%s} not found".formatted(id)));
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
@@ -30,7 +42,7 @@ public class CustomerService {
         if(customerDao.existPersonWithEmail(email)){
             throw new DuplicateResourceException("email already taken");
         }
-        customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email(),customerRegistrationRequest.age(), customerRegistrationRequest.gender()));
+        customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email(), passwordEncoder.encode(customerRegistrationRequest.password()), customerRegistrationRequest.age(), customerRegistrationRequest.gender()));
     }
 
     public void deleteCustomerById(Integer customerId){
@@ -41,7 +53,9 @@ public class CustomerService {
     }
 
     public void updateCustomer(Integer customerId, CustomerUpdateRequest updateRequest) {
-        Customer customer = getCustomer(customerId);
+        Customer customer = customerDao.selectCustomerById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("customer with id [%s} not found".formatted(customerId)));
+
 
         boolean changes = false;
 

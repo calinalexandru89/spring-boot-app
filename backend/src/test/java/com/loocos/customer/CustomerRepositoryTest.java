@@ -1,19 +1,24 @@
 package com.loocos.customer;
 
 import com.loocos.AbstractTestcontainers;
+import com.loocos.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.context.ApplicationContext;
+import com.loocos.security.SecurityConfig;
+import org.springframework.context.annotation.Import;
 
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+//@Import(SecurityConfig.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Import({TestConfig.class})
 class CustomerRepositoryTest extends AbstractTestcontainers {
 
     @Autowired
@@ -33,7 +38,7 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         //Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
 
-        Customer customer = new Customer(FAKER.name().fullName(), email,20, Gender.MALE);
+        Customer customer = new Customer(FAKER.name().fullName(), email, "password", 20, Gender.MALE);
         underTest.save(customer);
 
 
@@ -63,7 +68,7 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         //Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
 
-        Customer customer = new Customer(FAKER.name().fullName(), email,20, Gender.MALE);
+        Customer customer = new Customer(FAKER.name().fullName(), email, "password", 20, Gender.MALE);
         underTest.save(customer);
 
         int id = underTest.findAll()

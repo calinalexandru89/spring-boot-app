@@ -30,7 +30,6 @@ public class CustomerIT {
     private static final Random RANDOM = new Random();
     private static final String CUSTOMER_PATH = "/api/v1/customers";
 
-
     @Test
     void canRegisterACustomer() {
         //create a registration request

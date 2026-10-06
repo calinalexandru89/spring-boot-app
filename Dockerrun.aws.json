@@ -15,7 +15,7 @@
     },
     {
       "name": "spring-boot-app",
-      "image": "calinalexandrucosmin89/spring-boot-app:29.09.2026.12.38.03",
+      "image": "calinalexandrucosmin89/spring-boot-app:06.10.2026.11.26.14",
       "essential": true,
       "memory": 512,
       "portMappings": [

@@ -9,9 +9,6 @@ import {useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 
 const MyTextInput = ({label, ...props}) => {
-    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-    // which we can spread on <input>. We can use field meta to show an error
-    // message if the field is invalid and it has been touched (i.e. visited)
     const [field, meta] = useField(props);
     return (
         <Box>
@@ -40,7 +37,7 @@ const LoginForm = () => {
                         .email("Must be valid email")
                         .required("Email is required"),
                     password: Yup.string()
-                        .max(20, "Password cannot be more that 20 charachter")
+                        .max(20, "Password cannot be more than 20 characters")
                         .required("Password is required")
             })
             }
@@ -108,6 +105,9 @@ const Login = () => {
                     />
                     <Heading fontSize={'2xl'} mb={15}>Sign in to your account</Heading>
                     <LoginForm />
+                    <Link color={"blue.500"} href={"/signup"}>
+                        Dont have an account? Signup now.
+                    </Link>
                 </Stack>
             </Flex>
             <Flex flex={1} p={10} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} bgGradient={{sm: 'linear(to-r, blue.600, purple.600)'}}>

@@ -1,7 +1,7 @@
 services:
   db:
     container_name: postgres
-    image: postgres
+    image: postgres:14.1
     environment:
       POSTGRES_USER: loocos
       POSTGRES_PASSWORD: password

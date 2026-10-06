@@ -11,6 +11,8 @@ import {
     IconButton,
     Link,
     Menu,
+    MenuList,
+    MenuItem,
     MenuButton,
     MenuDivider,
     Text,
@@ -23,17 +25,21 @@ import {
 import {
     FiBell,
     FiChevronDown,
+    FiCompass,
     FiHome,
     FiMenu,
     FiSettings,
-    FiUsers
+    FiStar,
+    FiTrendingUp
 } from 'react-icons/fi';
-//import {useAuth} from "../context/AuthContext.jsx";
+import {useAuth} from "../context/AuthContext.jsx";
 
 const LinkItems = [
-    {name: 'Home', route: '/dashboard', icon: FiHome},
-    {name: 'Customers', route: '/dashboard/customers',  icon: FiUsers},
-    {name: 'Settings', route: '/dashboard/settings', icon: FiSettings},
+    {name: 'Home', icon: FiHome},
+    {name: 'Trending', icon: FiTrendingUp},
+    {name: 'Explore', icon: FiCompass},
+    {name: 'Favourites', icon: FiStar},
+    {name: 'Settings', icon: FiSettings},
 ];
 
 export default function SidebarWithHeader({children}) {
@@ -57,7 +63,7 @@ export default function SidebarWithHeader({children}) {
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            {/*<MobileNav onOpen={onOpen}/>*/}
+            <MobileNav onOpen={onOpen}/>
             <Box ml={{base: 0, md: 60}} p="4">
                 {children}
             </Box>
@@ -89,7 +95,7 @@ const SidebarContent = ({onClose, ...rest}) => {
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
             </Flex>
             {LinkItems.map((link) => (
-                <NavItem key={link.name} route={link.route} icon={link.icon}>
+                <NavItem key={link.name} icon={link.icon}>
                     {link.name}
                 </NavItem>
             ))}
@@ -99,7 +105,7 @@ const SidebarContent = ({onClose, ...rest}) => {
 
 const NavItem = ({icon, route, children, ...rest}) => {
     return (
-        <Link href={route} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
+        //<Link href={route} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
             <Flex
                 align="center"
                 p="4"
@@ -124,11 +130,10 @@ const NavItem = ({icon, route, children, ...rest}) => {
                 )}
                 {children}
             </Flex>
-        </Link>
+       // </Link>
     );
 };
 
-/*
 const MobileNav = ({onOpen, ...rest}) => {
     const { logOut, customer } = useAuth()
     return (
@@ -211,4 +216,4 @@ const MobileNav = ({onOpen, ...rest}) => {
             </HStack>
         </Flex>
     );
-};*/
+};

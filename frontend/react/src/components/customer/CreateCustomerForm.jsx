@@ -1,13 +1,11 @@
 import {Form, Formik, useField} from 'formik';
 import * as Yup from 'yup';
 import {Alert, AlertIcon, Box, Button, FormLabel, Input, Select, Stack} from "@chakra-ui/react";
-import {saveCustomer} from "../services/client.js";
-import {successNotification, errorNotification} from "../services/notification.js";
+import {saveCustomer} from "../../services/client.js";
+import {successNotification, errorNotification} from "../../services/notification.js";
 
 const MyTextInput = ({label, ...props}) => {
-    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-    // which we can spread on <input>. We can use field meta to show an error
-    // message if the field is invalid and it has been touched (i.e. visited)
+
     const [field, meta] = useField(props);
     return (
         <Box>
@@ -49,6 +47,7 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                     email: '',
                     age: 0,
                     gender: '',
+                    password: ''
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string()
@@ -61,6 +60,10 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                         .min(16, 'Must be at least 16 years of age')
                         .max(100, 'Must be less than 100 years of age')
                         .required(),
+                    password: Yup.string()
+                        .min(4, 'Must be 4 characters or more')
+                        .max(15, 'Must be 15 characters or less')
+                        .required('Required'),
                     gender: Yup.string()
                         .oneOf(
                             ['MALE', 'FEMALE'],
@@ -111,6 +114,13 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                                 name="age"
                                 type="number"
                                 placeholder="20"
+                            />
+
+                            <MyTextInput
+                                label="Password"
+                                name="password"
+                                type="password"
+                                placeholder={"pick a secure password"}
                             />
 
                             <MySelect label="Gender" name="gender">

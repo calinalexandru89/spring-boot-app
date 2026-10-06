@@ -31,11 +31,13 @@ public class Main {
             String lastName = name.lastName();
             int age = random.nextInt(16, 99);
             Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-                        Customer customer = new Customer( firstName + " " + lastName,
-                    firstName.toLowerCase() + "." + lastName.toLowerCase() + "@gmail.com",
-                                passwordEncoder.encode(UUID.randomUUID().toString()), age, gender);
+            String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@gmail.com";
+            Customer customer = new Customer( firstName + " " + lastName,
+                    email,
+                                passwordEncoder.encode("password"), age, gender);
 
             customerRepository.save(customer);
+            System.out.println(email);
         };
     }
 }

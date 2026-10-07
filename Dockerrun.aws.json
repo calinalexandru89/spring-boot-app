@@ -2,25 +2,13 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "spring-boot-app-react",
-      "image": "calinalexandrucosmin89/spring-boot-app-react:06.10.2026.11.22.35",
-      "essential": true,
-      "memory": 256,
-      "portMappings": [
-        {
-         "hostPort": 80,
-         "containerPort": 5173
-       }
-      ]
-    },
-    {
       "name": "spring-boot-app",
       "image": "calinalexandrucosmin89/spring-boot-app:06.10.2026.11.26.14",
       "essential": true,
       "memory": 512,
       "portMappings": [
         {
-          "hostPort": 8080,
+          "hostPort": 80,
           "containerPort": 8080
         }
       ],
